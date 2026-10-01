@@ -1201,9 +1201,31 @@ a {
 }
 
 /* RESPONSIVE BREAKPOINTS */
-@media(max-width: 760px) {
-  .container { width: min(100% - 36px, 600px); }
-  .nav { height: 72px; padding: 0 20px; }
+
+/* Tablet (<= 1024px) */
+@media (max-width: 1024px) {
+  .container { width: min(100% - 48px, 920px); }
+  .nav { padding: 0 24px; }
+  .nav-links { gap: 22px; }
+  .hero { min-height: 620px; gap: 24px; }
+  .hero-visual { height: 460px; }
+  .portrait-frame { width: 270px; height: 350px; }
+  .orbit-a { width: 420px; }
+  .orbit-b { width: 380px; height: 210px; }
+  .wire-sphere { width: 180px; height: 180px; }
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  .projects-grid > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .skills-inner { gap: 40px; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Phone (<= 760px) */
+@media (max-width: 760px) {
+  .container { width: min(100% - 32px, 640px); }
+  .ambient { width: 300px; height: 300px; filter: blur(80px); }
+
+  /* Navbar */
+  .nav { height: 72px; padding: 0 16px; gap: 12px; }
   .nav-links {
     display: none;
     position: absolute;
@@ -1213,47 +1235,95 @@ a {
     background: var(--nav-mobile-bg);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--line);
-    padding: 24px;
+    padding: 16px 24px;
     z-index: 20;
     flex-direction: column;
-    gap: 20px;
+    gap: 0;
   }
   .nav-links.is-open { display: flex; }
-  .menu-button { display: block; }
-  .hero {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-top: 40px;
-    min-height: auto;
-  }
-  .hero h1 { font-size: 48px; }
-  .hero-visual { width: 100%; height: 420px; }
-  .portrait-frame { width: 260px; height: 340px; }
-  .wire-sphere { width: 150px; height: 150px; right: 0; }
-  .orbit-a { width: 350px; }
+  .nav-links a { padding: 14px 0; font-size: 15px; border-bottom: 1px solid var(--line); }
+  .nav-links a:last-child { border-bottom: 0; }
+  .menu-button { display: grid; place-items: center; width: 44px; height: 44px; }
+  .theme-toggle { flex-shrink: 0; }
+
+  /* Hero */
+  .hero { display: flex; flex-direction: column; align-items: flex-start; padding-top: 32px; min-height: auto; }
+  .hero h1 { font-size: clamp(38px, 11vw, 52px); margin: 20px 0; }
+  .hero-intro { font-size: 15px; }
+  .hero-actions { width: 100%; margin: 28px 0; }
+  .hero-actions .button { flex: 1 1 100%; justify-content: center; }
+  .hero-visual { width: 100%; height: 380px; }
+  .portrait-frame { width: 240px; height: 310px; }
+  .orbit-a { width: 320px; height: 130px; }
+  .orbit-b { width: 280px; height: 180px; }
+  .wire-sphere { width: 130px; height: 130px; right: 0; top: 30px; }
+  .chip-one { left: 4px; top: 70px; }
+  .chip-two { right: 4px; bottom: 50px; }
   .social-row { gap: 14px; flex-wrap: wrap; }
   .social-divider { display: none; }
+
+  /* Sections */
   .section { padding: 60px 0; }
-  .split-heading, .section-heading-row, .process-heading { display: block; margin-bottom: 35px; }
-  .split-heading p, .section-heading-row p, .process-heading p { margin-top: 16px; }
+  .split-heading, .section-heading-row, .process-heading { display: block; margin-bottom: 32px; }
+  .split-heading h2, .section-heading-row h2, .process-heading h2 { font-size: clamp(32px, 9vw, 44px); }
+  .split-heading p, .section-heading-row p, .process-heading p { margin-top: 16px; max-width: none; }
+
   .approach-grid, .projects-grid { grid-template-columns: 1fr; }
+  .approach-card { padding: 24px; }
+  .approach-card h3 { margin: 28px 0 10px; }
   .stats-row { grid-template-columns: 1fr 1fr; }
-  .service-row { grid-template-columns: 35px 1fr 20px; }
-  .service-row p { display: none; }
+
+  /* Services: description phone pe bhi dikhega */
+  .service-row { grid-template-columns: 36px 1fr 20px; gap: 8px 14px; align-items: start; padding: 22px 8px; }
+  .service-num { grid-column: 1; grid-row: 1; }
+  .service-row h3 { grid-column: 2; grid-row: 1; font-size: 18px; }
+  .service-row p { grid-column: 2; grid-row: 2; font-size: 13px; }
+  .service-row svg { grid-column: 3; grid-row: 1; }
+
+  .skills-band { padding: 60px 0; }
   .skills-inner { display: block; }
-  .skill-cloud { margin-top: 30px; }
-  .timeline { display: block; margin-top: 35px; }
-  .timeline-step { padding-bottom: 24px; }
+  .skill-cloud { margin-top: 28px; }
+
+  .project-art { height: 180px; }
+  .project-card p { min-height: 0; }
+
+  /* Timeline: vertical */
+  .process-section { padding: 60px 0; }
+  .timeline { display: block; margin: 35px 0 0 5px; padding-left: 24px; border-left: 1px solid var(--line); }
+  .timeline-step { padding-bottom: 26px; }
+  .timeline-step:last-child { padding-bottom: 0; }
+  .timeline-step > span { display: block; margin-bottom: 4px; }
+  .timeline-dot { position: absolute; left: -30px; top: 1px; margin: 0; }
   .timeline-line { display: none; }
-  .timeline-dot { margin: 10px 0; }
+
+  /* Contact */
+  .cta-section { padding: 80px 0; }
+  .cta-section h2 { font-size: clamp(36px, 10vw, 52px); }
+  .cta-spark { display: none; }
+  .cta-orb { width: 340px; height: 340px; }
   .form-row { grid-template-columns: 1fr; }
-  .footer { gap: 20px; flex-wrap: wrap; }
+  .contact-form input, .contact-form textarea { font-size: 16px; } /* iPhone zoom rokta hai */
+  .contact-form .button { width: 100%; justify-content: center; }
+  .button { min-height: 48px; }
+
+  /* Footer */
+  .footer { gap: 16px; flex-wrap: wrap; padding-bottom: calc(36px + env(safe-area-inset-bottom)); }
   .footer p { order: 3; width: 100%; margin: 0; }
   .footer-right { margin-left: auto; }
 }
 
-@media(prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .marquee div, .ambient, .orbit-a, .orbit-b, .pulse-dot { animation: none; }
+/* Small phone (<= 400px) */
+@media (max-width: 400px) {
+  .hero h1 { font-size: 36px; }
+  .hero-visual { height: 340px; }
+  .portrait-frame { width: 220px; height: 285px; }
+  .marquee { font-size: 10px; letter-spacing: 0.18em; }
+  .skill { padding: 8px 12px; font-size: 11px; }
+  .footer-right { width: 100%; justify-content: space-between; margin-left: 0; }
+}
+
+/* Touch devices: hover pe card jump nahi karega */
+@media (hover: none) {
+  .project-card:hover, .approach-card:hover,
+  .button-primary:hover, .button-ghost:hover { transform: none; }
 }
